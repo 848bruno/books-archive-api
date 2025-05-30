@@ -9,7 +9,7 @@ export class Author {
   @Column({ length: 100 })
   name: string;
 
-  @Column({ type: 'text', nullable: true, length: 1000 })
+  @Column({ type: 'text', nullable: true,})
   bio?: string;
 
   @Column({ type: 'date', nullable: true })
