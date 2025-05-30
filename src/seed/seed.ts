@@ -15,12 +15,12 @@ async function bootstrap() {
   const dataSource = app.get(DataSource);
 
   // Clear tables first (optional)
-  await dataSource.getRepository(BookReview).delete({});
-  await dataSource.getRepository(Book).delete({});
-  await dataSource.getRepository(Category).delete({});
-  await dataSource.getRepository(Author).delete({});
-  await dataSource.getRepository(Profile).delete({});
-  await dataSource.getRepository(User).delete({});
+  await dataSource.getRepository(BookReview).clear();
+  await dataSource.getRepository(Book).clear();
+  await dataSource.getRepository(Category).clear();
+  await dataSource.getRepository(Author).clear();
+  await dataSource.getRepository(Profile).clear();
+  await dataSource.getRepository(User).clear();
 
   // Create Users
   const userRepo = dataSource.getRepository(User);
