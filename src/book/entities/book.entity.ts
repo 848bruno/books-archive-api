@@ -7,9 +7,9 @@ import {
   JoinTable,
   OneToMany,
 } from 'typeorm';
-import { Author } from '../author/author.entity';
-import { Category } from '../category/category.entity';
-import { BookReview } from '../book-review/book-review.entity';
+import { Author } from 'src/author/entities/author.entity';
+import { Category } from 'src/category/entities/category.entity';
+import { BookReview } from 'src/bookreview/entities/bookreview.entity';
 
 @Entity()
 export class Book {

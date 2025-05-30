@@ -4,7 +4,7 @@ import {
   Column,
   ManyToMany,
 } from 'typeorm';
-import { Book } from '../book/book.entity';
+import { Book } from 'src/book/entities/book.entity';
 
 @Entity()
 export class Category {

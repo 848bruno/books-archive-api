@@ -4,9 +4,9 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { BookReview } from './entities/book-review.entity';
-import { CreateBookReviewDto } from './dto/create-book-review.dto';
-import { UpdateBookReviewDto } from './dto/update-book-review.dto';
+import { BookReview } from 'src/bookreview/entities/bookreview.entity';
+import { CreateBookReviewDto } from 'src/bookreview/dto/create-bookreview.dto';
+import { UpdateBookreviewDto } from 'src/bookreview/dto/update-bookreview.dto';
 import { Book } from '../book/entities/book.entity';
 import { User } from '../user/entities/user.entity';
 
@@ -43,7 +43,7 @@ export class BookReviewService {
     return review;
   }
 
-  async update(id: string, dto: UpdateBookReviewDto): Promise<BookReview> {
+  async update(id: string, dto: UpdateBookreviewDto): Promise<BookReview> {
     const review = await this.findOne(id);
     Object.assign(review, dto);
     return this.reviewRepo.save(review);
