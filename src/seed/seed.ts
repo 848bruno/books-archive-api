@@ -1,5 +1,3 @@
-// src/seeder/seeder.ts
-
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from '../app.module';
 import { DataSource } from 'typeorm';
@@ -10,6 +8,7 @@ import { Book } from '../book/entities/book.entity';
 import { Category } from '../category/entities/category.entity';
 import { BookReview } from '../bookreview/entities/bookreview.entity';
 import { faker } from '@faker-js/faker';
+
 
 async function bootstrap() {
   const app = await NestFactory.createApplicationContext(AppModule);
