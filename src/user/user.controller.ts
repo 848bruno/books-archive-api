@@ -1,4 +1,3 @@
-// src/controllers/users.controller.ts
 import {
   Controller,
   Get,
@@ -8,8 +7,8 @@ import {
   Put,
   Delete,
 } from '@nestjs/common';
-import { UsersService } from '../services/users.service';
-import { CreateUserDto } from '../dto/create-user.dto';
+import { UsersService } from 'src/user/user.service';
+import { CreateUserDto } from 'src/user/dto/create-user.dto';
 
 @Controller('users')
 export class UsersController {

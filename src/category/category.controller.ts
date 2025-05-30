@@ -32,7 +32,9 @@ export class CategoryController {
     return this.categoryService.findOne(id);
   }
 
-  @Put(':id')
-  update(@Param('id') id: string,
-::contentReference[oaicite:0]{index=0}
+@Put(':id')
+update(@Param('id') id: string, @Body() dto: UpdateCategoryDto) {
+  return this.categoryService.update(id, dto);
+}
  
+}

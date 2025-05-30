@@ -1,9 +1,9 @@
-// src/services/users.service.ts
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { User } from '../entities/user.entity';
-import { CreateUserDto } from '../dto/create-user.dto';
+import { User } from 'src/user/entities/user.entity';
+import { CreateUserDto } from './dto/create-user.dto';
+
 
 @Injectable()
 export class UsersService {
@@ -21,8 +21,12 @@ export class UsersService {
     return this.usersRepository.find({ relations: ['profile', 'reviews'] });
   }
 
-  findOne(id: string): Promise<User> {
-    return this.usersRepository.findOne(id, { relations: ['profile', 'reviews'] });
+  async findOne(id: string): Promise<User> {
+    const user = await this.usersRepository.findOne({ where: { id }, relations: ['profile', 'reviews'] });
+    if (!user) {
+      throw new Error(`User with id ${id} not found`);
+    }
+    return user;
   }
 
   async update(id: string, updateUserDto: Partial<CreateUserDto>): Promise<User> {
