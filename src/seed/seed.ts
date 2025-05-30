@@ -9,18 +9,14 @@ import { Category } from '../category/entities/category.entity';
 import { BookReview } from '../bookreview/entities/bookreview.entity';
 import { faker } from '@faker-js/faker';
 
-
 async function bootstrap() {
   const app = await NestFactory.createApplicationContext(AppModule);
   const dataSource = app.get(DataSource);
 
-  // Clear tables first (optional)
-  await dataSource.getRepository(BookReview).clear();
-  await dataSource.getRepository(Book).clear();
-  await dataSource.getRepository(Category).clear();
-  await dataSource.getRepository(Author).clear();
-  await dataSource.getRepository(Profile).clear();
-  await dataSource.getRepository(User).clear();
+  // Safe truncate of all tables respecting FK constraints
+  await dataSource.query(
+    `TRUNCATE TABLE "book_review", "book", "category", "author", "profile", "user" RESTART IDENTITY CASCADE`
+  );
 
   // Create Users
   const userRepo = dataSource.getRepository(User);
@@ -58,7 +54,7 @@ async function bootstrap() {
     birthDate: '1930-11-16',
   });
   const author2 = authorRepo.create({
-    name: 'bad manas you guy\'o',
+    name: "bad manas you guy'o",
     bio: 'Kenyan writer and academic.',
     birthDate: '1938-01-05',
   });
@@ -107,4 +103,5 @@ async function bootstrap() {
   console.log('Database seeded successfully!');
   await app.close();
 }
+
 bootstrap();
