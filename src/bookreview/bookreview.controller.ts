@@ -1,34 +1,42 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { BookreviewService } from './bookreview.service';
-import { CreateBookreviewDto } from './dto/create-bookreview.dto';
-import { UpdateBookreviewDto } from './dto/update-bookreview.dto';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  Put,
+} from '@nestjs/common';
+import { BookReviewService } from './book-review.service';
+import { CreateBookReviewDto } from './dto/create-book-review.dto';
+import { UpdateBookReviewDto } from './dto/update-book-review.dto';
 
-@Controller('bookreview')
-export class BookreviewController {
-  constructor(private readonly bookreviewService: BookreviewService) {}
+@Controller('book-reviews')
+export class BookReviewController {
+  constructor(private readonly bookReviewService: BookReviewService) {}
 
   @Post()
-  create(@Body() createBookreviewDto: CreateBookreviewDto) {
-    return this.bookreviewService.create(createBookreviewDto);
+  create(@Body() dto: CreateBookReviewDto) {
+    return this.bookReviewService.create(dto);
   }
 
   @Get()
   findAll() {
-    return this.bookreviewService.findAll();
+    return this.bookReviewService.findAll();
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.bookreviewService.findOne(+id);
+    return this.bookReviewService.findOne(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateBookreviewDto: UpdateBookreviewDto) {
-    return this.bookreviewService.update(+id, updateBookreviewDto);
+  @Put(':id')
+  update(@Param('id') id: string, @Body() dto: UpdateBookReviewDto) {
+    return this.bookReviewService.update(id, dto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.bookreviewService.remove(+id);
+    return this.bookReviewService.remove(id);
   }
 }
