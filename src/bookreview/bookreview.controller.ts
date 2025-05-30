@@ -7,9 +7,9 @@ import {
   Delete,
   Put,
 } from '@nestjs/common';
-import { BookReviewService } from './book-review.service';
-import { CreateBookReviewDto } from './dto/create-book-review.dto';
-import { UpdateBookReviewDto } from './dto/update-book-review.dto';
+import { BookReviewService } from 'src/bookreview/bookreview.service';
+import { CreateBookReviewDto } from 'src/bookreview/dto/create-bookreview.dto';
+import { UpdateBookreviewDto } from 'src/bookreview/dto/update-bookreview.dto';
 
 @Controller('book-reviews')
 export class BookReviewController {
@@ -31,7 +31,7 @@ export class BookReviewController {
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() dto: UpdateBookReviewDto) {
+  update(@Param('id') id: string, @Body() dto: UpdateBookreviewDto) {
     return this.bookReviewService.update(id, dto);
   }
 
