@@ -8,6 +8,7 @@ import { BookModule } from './book/book.module';
 import { CategoryModule } from './category/category.module';
 import { BookreviewModule } from './bookreview/bookreview.module';
 import { DatabaseModule } from './database/database.module';
+import { SeedModule } from './seed/seed.module';
 
 @Module({
   imports: [DatabaseModule,
@@ -28,6 +29,7 @@ import { DatabaseModule } from './database/database.module';
     BookModule,
     CategoryModule,
     BookreviewModule,
+    SeedModule,
   ],
 })
 export class AppModule {}
