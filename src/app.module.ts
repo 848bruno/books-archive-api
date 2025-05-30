@@ -7,9 +7,10 @@ import { AuthorModule } from './author/author.module';
 import { BookModule } from './book/book.module';
 import { CategoryModule } from './category/category.module';
 import { BookreviewModule } from './bookreview/bookreview.module';
+import { DatabaseModule } from './database/database.module';
 
 @Module({
-  imports: [
+  imports: [DatabaseModule,
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRoot({
       type: 'postgres',
@@ -19,7 +20,7 @@ import { BookreviewModule } from './bookreview/bookreview.module';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       autoLoadEntities: true,
-      synchronize: true, // Use migrations in production
+      synchronize: true, 
     }),
     UsersModule,
     ProfileModule,

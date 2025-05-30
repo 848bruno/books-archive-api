@@ -2,12 +2,12 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProfileService } from './profile.service';
 import { ProfileController } from './profile.controller';
-// import { ProfileRepository } from './profile.repository';
+import { DatabaseModule } from 'src/database/database.module';
+import { Profile } from './entities/profile.entity';
+
 
 @Module({
-  // Remove ProfileRepository if it does not exist or replace with the correct entity
-  // imports: [TypeOrmModule.forFeature([ProfileRepository])],
-  imports: [],
+  imports: [DatabaseModule, TypeOrmModule.forFeature([Profile])],
   controllers: [ProfileController],
   providers: [ProfileService],
   exports: [ProfileService],
