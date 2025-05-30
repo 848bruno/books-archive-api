@@ -16,10 +16,10 @@ export class Book {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ length: 200 })
+  @Column()
   title: string;
 
-  @Column({ type: 'text', length: 2000 })
+  @Column({ type: 'text' })
   description: string;
 
   @Column()

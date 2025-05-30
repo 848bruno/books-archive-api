@@ -11,10 +11,10 @@ export class Category {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ length: 50, unique: true })
+  @Column({  unique: true })
   name: string;
 
-  @Column({ type: 'text', length: 500, nullable: true })
+  @Column({ type: 'text', nullable: true })
   description?: string;
 
   @ManyToMany(() => Book, (book) => book.categories)
