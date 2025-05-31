@@ -17,7 +17,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         autoLoadEntities: true,
         synchronize: configService.get<boolean>('DB_SYNC') ?? true,
         logging: configService.get<boolean>('DB_LOGGING') ?? false,
-        ssl: false, // ✅ your DB doesn't support SSL
+        ssl: false, 
         entities: [__dirname + '/../**/*.entity{.ts,.js}'],
         migrations: [__dirname + '/../migrations/**/*{.ts,.js}'],
       }),
