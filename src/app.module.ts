@@ -16,18 +16,25 @@ import { SeedModule } from './seed/seed.module';
       envFilePath: '.env',
      }), 
     TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
-        host: configService.getOrThrow('DB_HOST'),
-        port: configService.get<number>('DB_PORT') ?? 5432,
-        username: configService.getOrThrow('DB_USERNAME'),
-        password: configService.getOrThrow('DB_PASSWORD'),
-        database: configService.getOrThrow('DB_NAME'),
-        autoLoadEntities: true,
-          ssl: false,
-        synchronize: true,
+  imports: [ConfigModule],
+  inject: [ConfigService],
+  useFactory: (configService: ConfigService) => ({
+    type: 'postgres',
+    host: configService.getOrThrow('DB_HOST'),
+    port: configService.get<number>('DB_PORT') ?? 5432,
+    username: configService.getOrThrow('DB_USERNAME'),
+    password: configService.getOrThrow('DB_PASSWORD'),
+    database: configService.getOrThrow('DB_NAME'),
+    autoLoadEntities: true,
+    synchronize: true,
+    ssl: true,
+    extra: {
+      ssl: {
+        rejectUnauthorized: false, 
+      },
+    },
+
+
       }),
     }),
     DatabaseModule,
